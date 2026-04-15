@@ -1,0 +1,120 @@
+<section class="section about" id="about">
+  <h2 class="section-title">About</h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        <strong>Morpheus Veil</strong> is a music project exploring the convergence
+        of alternative rock and electronic music. Electric bass, synthesizers
+        and digital production as the pillars of a sound that moves between raw
+        and synthetic.
+      </p>
+      <p>
+        A direct approach: building songs that connect, with layers of electronic
+        textures over bass lines that lead the way.
+      </p>
+    </div>
+
+    <div class="about-visual">
+      <div class="visual-card">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <span class="card-icon">&#9835;</span>
+          <h3>The Sound</h3>
+          <p>Electric bass, synthesizers, beats and electronic production.</p>
+        </div>
+      </div>
+      <div class="visual-card">
+        <div class="card-glow"></div>
+        <div class="card-content">
+          <span class="card-icon">&#9672;</span>
+          <h3>The Vision</h3>
+          <p>Creating sonic experiences that blur the line between organic and digital.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(219, 249, 244, 0.8);
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
+    color: var(--glaucous);
+    font-weight: 600;
+  }
+
+  .about-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .visual-card {
+    position: relative;
+    background: rgba(33, 1, 36, 0.5);
+    border: 1px solid rgba(114, 109, 168, 0.2);
+    border-radius: 16px;
+    padding: 2rem;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .visual-card:hover {
+    border-color: rgba(114, 109, 168, 0.5);
+    transform: translateY(-4px);
+  }
+
+  .card-glow {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(114, 109, 168, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--dusty-grape);
+  }
+
+  .card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--frozen-water);
+  }
+
+  .card-content p {
+    font-size: 0.95rem;
+    color: rgba(219, 249, 244, 0.6);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

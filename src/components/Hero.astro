@@ -1,0 +1,219 @@
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tag">Alternative Rock / Electronic</p>
+    <h1 class="hero-title">
+      <span class="line">Morpheus</span>
+      <span class="line accent">Veil</span>
+    </h1>
+    <div class="hero-actions">
+      <a href="#music" class="btn btn-primary">Listen</a>
+      <a href="#about" class="btn btn-outline">Learn More</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span></span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(114, 109, 168, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(114, 109, 168, 0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--dusty-grape);
+    top: -10%;
+    right: -5%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--glaucous);
+    bottom: -15%;
+    left: -10%;
+    animation-delay: -3s;
+  }
+
+  .orb-3 {
+    width: 250px;
+    height: 250px;
+    background: var(--midnight-violet);
+    top: 40%;
+    left: 50%;
+    animation-delay: -5s;
+    opacity: 0.6;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .hero-tag {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--glaucous);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .line {
+    display: block;
+  }
+
+  .hero-title .accent {
+    background: linear-gradient(135deg, var(--dusty-grape), var(--glaucous), var(--frozen-water));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.85rem 2.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--dusty-grape), var(--glaucous));
+    color: var(--frozen-water);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(114, 109, 168, 0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--frozen-water);
+    border: 1px solid rgba(125, 140, 196, 0.4);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--glaucous);
+    background: rgba(125, 140, 196, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+
+  .scroll-indicator span {
+    display: block;
+    width: 20px;
+    height: 32px;
+    border: 2px solid rgba(125, 140, 196, 0.4);
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .scroll-indicator span::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 6px;
+    background: var(--glaucous);
+    border-radius: 2px;
+    animation: scroll-anim 2s ease-in-out infinite;
+  }
+
+  @keyframes scroll-anim {
+    0%, 100% { opacity: 1; top: 6px; }
+    50% { opacity: 0.3; top: 16px; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .orb-1 { width: 300px; height: 300px; }
+    .orb-2 { width: 250px; height: 250px; }
+  }
+</style>
