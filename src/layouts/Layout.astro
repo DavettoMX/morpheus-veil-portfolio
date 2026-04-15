@@ -18,6 +18,55 @@ const { title = 'Morpheus Veil' } = Astro.props;
   <body>
     <slot />
     <script>
+      // Console messages
+      console.log('%c MORPHEUS VEIL ', 'background: #726DA8; color: #DBF9F4; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 4px;');
+      console.log('%cYou opened the inspector. Respect.', 'color: #7D8CC4; font-size: 13px;');
+      console.log('%cLooking for something? There might be secrets hidden in this site...', 'color: #7D8CC4; font-size: 12px; font-style: italic;');
+      console.log('%cHint: old school gamers know the way.', 'color: rgba(219, 249, 244, 0.3); font-size: 11px;');
+      console.log('%cBuilt with insomnia, bass guitar, and too many thoughts.', 'color: rgba(219, 249, 244, 0.2); font-size: 10px;');
+
+      // DevTools detection
+      let devtoolsCount = parseInt(sessionStorage.getItem('devtools-count') || '0');
+      const devtoolsMsgs = [
+        'Oh, you opened the inspector.',
+        'You again?',
+        'At this point we\'re friends. Still no cheats though.',
+        'Seriously, there\'s nothing here. Go play the Konami Code or something.',
+        'Fine. Stay. I\'ll just keep logging.',
+      ];
+      const dtCheck = new Image();
+      Object.defineProperty(dtCheck, 'id', {
+        get: function() {
+          devtoolsCount++;
+          sessionStorage.setItem('devtools-count', devtoolsCount.toString());
+          const msg = devtoolsMsgs[Math.min(devtoolsCount - 1, devtoolsMsgs.length - 1)];
+          console.log('%c' + msg, 'color: #726DA8; font-size: 12px; font-weight: bold;');
+        }
+      });
+      console.log('%c', dtCheck);
+
+      // Block right-click
+      document.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        const toast = document.createElement('div');
+        toast.className = 'achievement-toast';
+        toast.innerHTML = '<div class="achievement-icon">&#128065;</div><div class="achievement-text"><strong>Nice try</strong><span>Looking for something? You won\'t find it here.</span></div>';
+        document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('show'));
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 500);
+        }, 2500);
+      });
+
+      // Block Ctrl+U (view source) -> rickroll
+      document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.key === 'u') {
+          e.preventDefault();
+          window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank');
+        }
+      });
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -57,7 +106,10 @@ const { title = 'Morpheus Veil' } = Astro.props;
                 document.body.appendChild(glitch);
                 document.body.style.animation = 'screenGlitch 0.15s linear 5';
                 setTimeout(() => {
-                  window.location.href = '/secret';
+                  const ts = Date.now();
+                sessionStorage.setItem('konami', btoa('mv-' + ts + '-nerd'));
+                sessionStorage.setItem('konami-ts', ts.toString());
+                window.location.href = '/secret';
                 }, 800);
               }, 500);
             }, 3000);
