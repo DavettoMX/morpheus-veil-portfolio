@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 | Morpheus Veil">
+  <div class="not-found">
+    <div class="orb"></div>
+    <h1>404</h1>
+    <p>This page doesn't exist. Maybe it was just a dream.</p>
+    <a href="/" class="back-link">Back to reality</a>
+  </div>
+</Layout>
+
+<style>
+  .not-found {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+  }
+
+  .orb {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--dusty-grape);
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.25;
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.25; }
+    50% { transform: scale(1.2); opacity: 0.35; }
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--dusty-grape), var(--glaucous));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: rgba(219, 249, 244, 0.5);
+    margin: 1rem 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .back-link {
+    padding: 0.85rem 2.2rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: 1px solid rgba(125, 140, 196, 0.4);
+    color: var(--frozen-water);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .back-link:hover {
+    border-color: var(--glaucous);
+    background: rgba(125, 140, 196, 0.1);
+    transform: translateY(-2px);
+  }
+</style>
