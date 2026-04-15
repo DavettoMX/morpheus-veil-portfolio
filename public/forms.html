@@ -1,13 +1,16 @@
-<!-- Hidden file for Netlify Forms detection -->
-<html><body>
-  <form name="booking" netlify hidden>
-    <input name="name" />
-    <input name="email" />
-    <input name="event" />
-    <input name="date" />
+<!DOCTYPE html>
+<html>
+<head><title>Forms</title></head>
+<body>
+  <form name="booking" method="POST" data-netlify="true">
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="event" />
+    <input type="date" name="date" />
     <textarea name="message"></textarea>
   </form>
-  <form name="newsletter" netlify hidden>
-    <input name="email" />
+  <form name="newsletter" method="POST" data-netlify="true">
+    <input type="email" name="email" />
   </form>
-</body></html>
+</body>
+</html>
