@@ -7,8 +7,8 @@
   </div>
 
   <div class="hero-content">
-    <p class="hero-tag">Alternative Rock / Electronic</p>
-    <h1 class="hero-title">
+    <p class="hero-tag" id="heroTag">Alternative Rock / Electronic</p>
+    <h1 class="hero-title" id="heroTitle">
       <span class="line">Morpheus</span>
       <span class="line accent">Veil</span>
     </h1>
@@ -216,4 +216,61 @@
     .orb-1 { width: 300px; height: 300px; }
     .orb-2 { width: 250px; height: 250px; }
   }
+
+  .hero-title {
+    cursor: default;
+    user-select: none;
+  }
 </style>
+
+<style is:global>
+  .hero.dream-mode {
+    animation: dreamPulse 3s ease-in-out;
+  }
+
+  .hero.dream-mode .hero-bg {
+    filter: invert(1) hue-rotate(180deg);
+    transition: filter 0.5s ease;
+  }
+
+  @keyframes dreamPulse {
+    0% { filter: none; }
+    15% { filter: saturate(2) brightness(1.3); }
+    50% { filter: saturate(1.5) brightness(1.1) hue-rotate(30deg); }
+    85% { filter: saturate(2) brightness(1.3); }
+    100% { filter: none; }
+  }
+</style>
+
+<script>
+  // 3 AM mode
+  const hour = new Date().getHours();
+  if (hour >= 2 && hour < 4) {
+    const tag = document.getElementById('heroTag');
+    if (tag) tag.textContent = "Can't sleep either?";
+  }
+
+  // Dream mode on long press
+  const title = document.getElementById('heroTitle');
+  const hero = document.querySelector('.hero');
+  let pressTimer = null;
+
+  title?.addEventListener('mousedown', () => {
+    pressTimer = setTimeout(() => {
+      hero?.classList.add('dream-mode');
+      setTimeout(() => hero?.classList.remove('dream-mode'), 3000);
+    }, 800);
+  });
+
+  title?.addEventListener('mouseup', () => clearTimeout(pressTimer));
+  title?.addEventListener('mouseleave', () => clearTimeout(pressTimer));
+
+  title?.addEventListener('touchstart', (e) => {
+    pressTimer = setTimeout(() => {
+      hero?.classList.add('dream-mode');
+      setTimeout(() => hero?.classList.remove('dream-mode'), 3000);
+    }, 800);
+  });
+
+  title?.addEventListener('touchend', () => clearTimeout(pressTimer));
+</script>

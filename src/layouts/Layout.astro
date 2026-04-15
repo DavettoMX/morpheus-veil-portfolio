@@ -27,6 +27,45 @@ const { title = 'Morpheus Veil' } = Astro.props;
       }, { threshold: 0.1 });
 
       document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+      // Konami Code
+      const konami = [38,38,40,40,37,39,37,39,66,65];
+      let konamiIndex = 0;
+      document.addEventListener('keydown', (e) => {
+        if (e.keyCode === konami[konamiIndex]) {
+          konamiIndex++;
+          if (konamiIndex === konami.length) {
+            konamiIndex = 0;
+            const toast = document.createElement('div');
+            toast.className = 'achievement-toast';
+            toast.innerHTML = `
+              <div class="achievement-icon">&#9733;</div>
+              <div class="achievement-text">
+                <strong>Konami Nerd</strong>
+                <span>Achievement unlocked: You know the code. You're officially a nerd.</span>
+              </div>
+            `;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => {
+              toast.classList.remove('show');
+              setTimeout(() => {
+                toast.remove();
+                // Glitch transition
+                const glitch = document.createElement('div');
+                glitch.className = 'glitch-overlay';
+                document.body.appendChild(glitch);
+                document.body.style.animation = 'screenGlitch 0.15s linear 5';
+                setTimeout(() => {
+                  window.location.href = '/secret';
+                }, 800);
+              }, 500);
+            }, 3000);
+          }
+        } else {
+          konamiIndex = e.keyCode === konami[0] ? 1 : 0;
+        }
+      });
     </script>
   </body>
 </html>

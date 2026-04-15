@@ -5,7 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="404 | Morpheus Veil">
   <div class="not-found">
     <div class="orb"></div>
-    <h1>404</h1>
+    <h1 class="glitch-text" data-text="404">404</h1>
     <p>This page doesn't exist. Maybe it was just a dream.</p>
     <a href="/" class="back-link">Back to reality</a>
   </div>
@@ -51,6 +51,57 @@ import Layout from '../layouts/Layout.astro';
     background-clip: text;
     position: relative;
     z-index: 1;
+    cursor: default;
+  }
+
+  .glitch-text {
+    position: relative;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--dusty-grape), var(--glaucous));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  .glitch-text:hover::before {
+    opacity: 0.8;
+    animation: vhsGlitch1 0.3s linear infinite;
+    clip-path: inset(20% 0 30% 0);
+  }
+
+  .glitch-text:hover::after {
+    opacity: 0.8;
+    animation: vhsGlitch2 0.3s linear infinite;
+    clip-path: inset(50% 0 10% 0);
+  }
+
+  @keyframes vhsGlitch1 {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 3px) skewX(5deg); }
+    40% { transform: translate(5px, -2px) skewX(-3deg); }
+    60% { transform: translate(-3px, 1px) skewX(2deg); }
+    80% { transform: translate(4px, -3px) skewX(-4deg); }
+    100% { transform: translate(0); }
+  }
+
+  @keyframes vhsGlitch2 {
+    0% { transform: translate(0); }
+    20% { transform: translate(4px, -1px) skewX(-3deg); }
+    40% { transform: translate(-4px, 2px) skewX(4deg); }
+    60% { transform: translate(3px, -2px) skewX(-2deg); }
+    80% { transform: translate(-5px, 1px) skewX(5deg); }
+    100% { transform: translate(0); }
   }
 
   p {
