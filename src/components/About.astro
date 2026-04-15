@@ -4,33 +4,33 @@
   <div class="about-grid">
     <div class="about-text">
       <p>
-        <strong>Morpheus Veil</strong> is a music project exploring the convergence
-        of alternative rock and electronic music. Electric bass, synthesizers
-        and digital production as the pillars of a sound that moves between raw
-        and synthetic.
+        <strong>Morpheus Veil</strong> started with a bass, a laptop, and the
+        questionable decision to make music at 3 AM. What came out was a blend
+        of alternative rock grit and electronic textures that didn't quite fit
+        into any box — and that's the point.
       </p>
       <p>
-        A direct approach: building songs that connect, with layers of electronic
-        textures over bass lines that lead the way.
+        No guitars. Just electric bass running through synths, drum machines,
+        and whatever plugin sounds interesting at the moment. Think of it as
+        what happens when you put Twenty One Pilots, Gorillaz and Daft Punk
+        in a blender and hit pulse.
+      </p>
+      <p>
+        Still figuring things out, still experimenting, still playing
+        unreleased tracks to an audience of one (my cat). But the music
+        is coming. And it's going to be worth the wait.
       </p>
     </div>
 
-    <div class="about-visual">
-      <div class="visual-card">
-        <div class="card-glow"></div>
-        <div class="card-content">
-          <span class="card-icon">&#9835;</span>
-          <h3>The Sound</h3>
-          <p>Electric bass, synthesizers, beats and electronic production.</p>
-        </div>
-      </div>
-      <div class="visual-card">
-        <div class="card-glow"></div>
-        <div class="card-content">
-          <span class="card-icon">&#9672;</span>
-          <h3>The Vision</h3>
-          <p>Creating sonic experiences that blur the line between organic and digital.</p>
-        </div>
+    <div class="about-photo">
+      <div class="photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="m21 15-5-5L5 21"/>
+        </svg>
+        <p>Photo coming soon.</p>
+        <p class="photo-joke">Currently negotiating with the photographer.<br/>He wants exposure. I offered him... exposure.</p>
       </div>
     </div>
   </div>
@@ -41,80 +41,68 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: center;
   }
 
   .about-text p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: rgba(219, 249, 244, 0.8);
     margin-bottom: 1.5rem;
   }
 
-  .highlight {
-    color: var(--glaucous);
-    font-weight: 600;
+  .about-text p:last-child {
+    margin-bottom: 0;
   }
 
-  .about-visual {
+  .about-photo {
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    max-width: 380px;
+    border: 2px dashed rgba(114, 109, 168, 0.3);
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .visual-card {
-    position: relative;
-    background: rgba(33, 1, 36, 0.5);
-    border: 1px solid rgba(114, 109, 168, 0.2);
-    border-radius: 16px;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: rgba(219, 249, 244, 0.3);
+    text-align: center;
     padding: 2rem;
-    overflow: hidden;
-    transition: border-color 0.3s ease, transform 0.3s ease;
   }
 
-  .visual-card:hover {
-    border-color: rgba(114, 109, 168, 0.5);
-    transform: translateY(-4px);
+  .photo-placeholder svg {
+    opacity: 0.4;
   }
 
-  .card-glow {
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(114, 109, 168, 0.15), transparent 70%);
-    pointer-events: none;
+  .photo-placeholder p {
+    font-size: 0.9rem;
+    color: rgba(219, 249, 244, 0.35);
+    margin: 0;
+    line-height: 1.5;
   }
 
-  .card-content {
-    position: relative;
-    z-index: 1;
-  }
-
-  .card-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.8rem;
-    color: var(--dusty-grape);
-  }
-
-  .card-content h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--frozen-water);
-  }
-
-  .card-content p {
-    font-size: 0.95rem;
-    color: rgba(219, 249, 244, 0.6);
-    line-height: 1.6;
+  .photo-joke {
+    font-style: italic;
+    font-size: 0.8rem !important;
+    color: rgba(219, 249, 244, 0.2) !important;
+    margin-top: 0.5rem !important;
   }
 
   @media (max-width: 768px) {
     .about-grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
+    }
+
+    .photo-placeholder {
+      max-width: 300px;
+      aspect-ratio: 1 / 1;
     }
   }
 </style>
