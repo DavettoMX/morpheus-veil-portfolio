@@ -32,7 +32,7 @@
       <div class="contact-card newsletter-card">
         <h3>Newsletter</h3>
         <p>Be the first to know about new releases, tour dates and exclusive content.</p>
-        <form class="newsletter-form" id="newsletterForm" name="newsletter" method="POST" data-netlify="true">
+        <form class="newsletter-form" id="newsletterForm" name="newsletter">
           <div class="newsletter-input-group">
             <input type="email" name="email" placeholder="Your email" required />
             <button type="submit" class="btn-newsletter">Subscribe</button>
@@ -277,40 +277,72 @@
 </style>
 
 <script>
-  document.querySelectorAll('form[data-netlify="true"]').forEach(form => {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const originalText = btn.textContent;
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+  // Booking form -> Netlify Forms
+  document.getElementById('bookingForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
 
-      try {
-        const formData = new FormData(form);
-        formData.append('form-name', form.getAttribute('name'));
-        const response = await fetch('/forms.html', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString(),
-        });
+    try {
+      const formData = new FormData(form);
+      formData.append('form-name', 'booking');
+      const response = await fetch('/forms.html', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
 
-        if (response.ok) {
-          const msg = document.createElement('p');
-          msg.className = 'form-success';
-          msg.textContent = form.getAttribute('name') === 'newsletter'
-            ? 'You\'re in! We\'ll keep you posted.'
-            : 'Request sent! We\'ll get back to you soon.';
-          form.replaceWith(msg);
-        } else {
-          btn.textContent = 'Error, try again';
-          btn.disabled = false;
-          setTimeout(() => { btn.textContent = originalText; }, 3000);
-        }
-      } catch {
+      if (response.ok) {
+        const msg = document.createElement('p');
+        msg.className = 'form-success';
+        msg.textContent = 'Request sent! We\'ll get back to you soon.';
+        form.replaceWith(msg);
+      } else {
         btn.textContent = 'Error, try again';
         btn.disabled = false;
         setTimeout(() => { btn.textContent = originalText; }, 3000);
       }
-    });
+    } catch {
+      btn.textContent = 'Error, try again';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = originalText; }, 3000);
+    }
+  });
+
+  // Newsletter form -> Buttondown API via Netlify Function
+  document.getElementById('newsletterForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    const email = form.querySelector('input[name="email"]').value;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        const msg = document.createElement('p');
+        msg.className = 'form-success';
+        msg.textContent = 'You\'re in! We\'ll keep you posted.';
+        form.replaceWith(msg);
+      } else {
+        btn.textContent = 'Error, try again';
+        btn.disabled = false;
+        setTimeout(() => { btn.textContent = originalText; }, 3000);
+      }
+    } catch {
+      btn.textContent = 'Error, try again';
+      btn.disabled = false;
+      setTimeout(() => { btn.textContent = originalText; }, 3000);
+    }
   });
 </script>
