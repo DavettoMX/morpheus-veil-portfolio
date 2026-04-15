@@ -19,7 +19,7 @@ export default async (req) => {
         'Content-Type': 'application/json',
         Authorization: `Token ${process.env.BUTTONDOWN_API_KEY}`,
       },
-      body: JSON.stringify({ email, type: 'regular' }),
+      body: JSON.stringify({ email_address: email, type: 'regular' }),
     });
 
     if (response.ok) {
