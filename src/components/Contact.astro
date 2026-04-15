@@ -7,7 +7,6 @@
       <h3>Booking</h3>
       <p>Interested in booking Morpheus Veil for your event, festival or venue.</p>
       <form class="contact-form" id="bookingForm" name="booking" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="booking" />
         <div class="form-group">
           <input type="text" name="name" placeholder="Name / Organization" required />
         </div>
@@ -34,7 +33,6 @@
         <h3>Newsletter</h3>
         <p>Be the first to know about new releases, tour dates and exclusive content.</p>
         <form class="newsletter-form" id="newsletterForm" name="newsletter" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="newsletter" />
           <div class="newsletter-input-group">
             <input type="email" name="email" placeholder="Your email" required />
             <button type="submit" class="btn-newsletter">Subscribe</button>
@@ -288,10 +286,12 @@
       btn.disabled = true;
 
       try {
-        const response = await fetch('/', {
+        const formData = new FormData(form);
+        formData.append('form-name', form.getAttribute('name'));
+        const response = await fetch('/forms.html', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString(),
+          body: new URLSearchParams(formData).toString(),
         });
 
         if (response.ok) {
