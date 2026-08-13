@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#726DA8"/>
+      <stop offset="0%" stop-color="#4b3f5f"/>
       <stop offset="100%" stop-color="#7D8CC4"/>
     </linearGradient>
   </defs>

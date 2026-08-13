@@ -19,7 +19,7 @@ const { title = 'Morpheus Veil' } = Astro.props;
     <slot />
     <script>
       // Console messages
-      console.log('%c MORPHEUS VEIL ', 'background: #726DA8; color: #DBF9F4; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 4px;');
+      console.log('%c MORPHEUS VEIL ', 'background: #4b3f5f; color: #DBF9F4; font-size: 20px; font-weight: bold; padding: 10px 20px; border-radius: 4px;');
       console.log('%cYou opened the inspector. Respect.', 'color: #7D8CC4; font-size: 13px;');
       console.log('%cLooking for something? There might be secrets hidden in this site...', 'color: #7D8CC4; font-size: 12px; font-style: italic;');
       console.log('%cHint: old school gamers know the way.', 'color: rgba(219, 249, 244, 0.3); font-size: 11px;');
@@ -40,7 +40,7 @@ const { title = 'Morpheus Veil' } = Astro.props;
           devtoolsCount++;
           sessionStorage.setItem('devtools-count', devtoolsCount.toString());
           const msg = devtoolsMsgs[Math.min(devtoolsCount - 1, devtoolsMsgs.length - 1)];
-          console.log('%c' + msg, 'color: #726DA8; font-size: 12px; font-weight: bold;');
+          console.log('%c' + msg, 'color: #4b3f5f; font-size: 12px; font-weight: bold;');
         }
       });
       console.log('%c', dtCheck);
